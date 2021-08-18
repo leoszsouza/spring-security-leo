@@ -27,7 +27,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
         Person person = Optional.ofNullable(personService.findByUsername(username))
                 .orElseThrow(() -> new UsernameNotFoundException("Person not found!"));
         //MONTANDO MANUAL POIS NÃO TEM AS ROLES MAPEADAS NA BASE
-        List<GrantedAuthority> authorityList = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
-        return new User(person.getUsername(), person.getPassword(), authorityList);
+        List<GrantedAuthority> authorityUserList = AuthorityUtils.createAuthorityList("ROLE_USER");
+        List<GrantedAuthority> authorityAdminList = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
+        return new User(person.getUsername(), person.getPassword(), person.isAdmin() ? authorityAdminList : authorityUserList);
     }
 }

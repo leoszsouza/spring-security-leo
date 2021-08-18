@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .csrf().disable()
                 .headers().frameOptions().sameOrigin() //habilitar visualização do h2-console
                 .and().authorizeRequests()
+                .antMatchers("/person/add").hasRole("ADMIN")
                 .antMatchers("/person/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()

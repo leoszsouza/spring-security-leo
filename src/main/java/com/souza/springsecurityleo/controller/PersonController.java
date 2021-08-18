@@ -13,7 +13,7 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    @PostMapping("/person")
+    @PostMapping("/person/add")
     public void savePerson(@RequestBody PersonRequest personRequest){
         personService.savePerson(new Person(personRequest.getUsername(), personRequest.getPassword()));
     }

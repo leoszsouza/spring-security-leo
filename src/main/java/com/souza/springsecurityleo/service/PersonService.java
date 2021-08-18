@@ -22,6 +22,10 @@ public class PersonService {
         personRepository.save(person);
     }
 
+    public void delete(String username){
+
+    }
+
     public Person findByUsername(String username){
         return personRepository.findByUsername(username);
     }
